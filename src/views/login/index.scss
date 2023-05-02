@@ -1,0 +1,67 @@
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #fff;
+$cursor: #fff;
+
+@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
+  .login-container .el-input input {
+    color: $cursor;
+  }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+
+  .theme-switch {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+  }
+
+  .login-card {
+    width: 480px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #dcdfe6;
+    background-color: #fff;
+    overflow: hidden;
+
+    .title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+
+      img {
+        height: 80%;
+      }
+    }
+
+    .content {
+      padding: 20px 50px 50px 50px;
+
+      :deep(.el-input-group__append) {
+        padding: 0;
+        overflow: hidden;
+
+        .el-image {
+          width: 100px;
+          height: 40px;
+          border-left: 0px;
+          user-select: none;
+          cursor: pointer;
+          text-align: center;
+        }
+      }
+
+      .el-button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  }
+}

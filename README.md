@@ -1,24 +1,21 @@
 # teleop-frontend
 
-## Project setup
-```
-npm install
-```
+A web user interface to teleoperate a robot. Made with Vue3 + Vite.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Features
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Dual camera view
+- Virtual joystick to move the robot
+- Use the arrow keys to move the robot
+- A slider to limit the maximum speed
+- Battery and wifi signal indicators
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Demo
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+You can find the instructions on how to run the demo [here](https://github.com/KubeEdge4Robotics/robot-teleop).
+
+### License
+
+Copyright 2021 The KubeEdge Authors. All rights reserved.
+
+Licensed under the [Apache License](./LICENSE), Version 2.0.

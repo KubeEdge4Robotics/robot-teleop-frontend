@@ -1,0 +1,120 @@
+/*
+ * Copyright 2021 The KubeEdge Authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.app-wrapper {
+    @include clearfix;
+    position: relative;
+    width: 100%;
+}
+
+.showGreyMode {
+    filter: grayscale(1);
+}
+
+.showColorWeakness {
+    filter: invert(0.8);
+}
+
+.drawer-bg {
+    background-color: #000;
+    opacity: 0.3;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+}
+
+.main-container {
+    min-height: 100%;
+    transition: margin-left 0.28s;
+    margin-left: var(--robo-sidebar-width);
+    position: relative;
+}
+
+.sidebar-container {
+    transition: width 0.28s;
+    width: var(--robo-sidebar-width) !important;
+    height: 100%;
+    position: fixed;
+    font-size: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    width: calc(100% - var(--robo-sidebar-width));
+    transition: width 0.28s;
+}
+
+.hideSidebar {
+    .main-container {
+        margin-left: var(--robo-sidebar-hide-width);
+    }
+
+    .sidebar-container {
+        width: var(--robo-sidebar-hide-width) !important;
+    }
+
+    .fixed-header {
+        width: calc(100% - var(--robo-sidebar-hide-width));
+    }
+}
+
+// for mobile response
+.mobile {
+    .main-container {
+        margin-left: 0px;
+    }
+
+    .sidebar-container {
+        transition: transform 0.28s;
+        width: var(--robo-sidebar-width) !important;
+    }
+
+    &.openSidebar {
+        position: fixed;
+        top: 0;
+    }
+
+    &.hideSidebar {
+        .sidebar-container {
+            pointer-events: none;
+            transition-duration: 0.3s;
+            transform: translate3d(calc(0px - var(--robo-sidebar-width)), 0, 0);
+        }
+    }
+
+    .fixed-header {
+        width: 100%;
+    }
+}
+
+.withoutAnimation {
+
+    .main-container,
+    .sidebar-container {
+        transition: none;
+    }
+}

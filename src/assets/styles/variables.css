@@ -1,0 +1,46 @@
+/*
+ * Copyright 2021 The KubeEdge Authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+:root {
+  --robo-body-bg-color: #f2f3f5;
+  --robo-header-height: calc(var(--robo-navigationbar-height) + var(--robo-tagsview-height));
+  --robo-navigationbar-height: 50px;
+  --robo-joystick-height: 200px;
+  --robo-sidebar-width: 220px;
+  --robo-sidebar-hide-width: 58px;
+  --robo-sidebar-menu-item-height: 60px;
+  --robo-text-color-primary: #495060;
+  --robo-sidebar-menu-tip-line-bg-color: var(--el-color-primary);
+  --robo-sidebar-menu-bg-color: #001428;
+  --robo-sidebar-menu-hover-bg-color: #ffffff10;
+  --robo-sidebar-menu-text-color: #c0c4cc;
+  --robo-sidebar-menu-active-text-color: #ffffff;
+  --robo-sidebarlogo-bg-color: #001428;
+  --bg-primary-dark: rgba(36, 36, 36, 1);
+  --robo-tagsview-height: 34px;
+  --robo-tagsview-tag-text-color: #495060;
+  --robo-tagsview-tag-active-text-color: #ffffff;
+  --robo-tagsview-tag-bg-color: #ffffff;
+  --robo-tagsview-tag-active-bg-color: var(--el-color-primary);
+  --robo-tagsview-tag-border-radius: 2px;
+  --robo-tagsview-tag-border-color: #d8dce5;
+  --robo-tagsview-tag-active-border-color: var(--el-color-primary);
+  --robo-tagsview-tag-active-before-color: #ffffff;
+  --robo-tagsview-tag-icon-hover-bg-color: #00000030;
+  --robo-tagsview-tag-icon-hover-color: #ffffff;
+  --robo-rightpanel-button-bg-color: #001428;
+}

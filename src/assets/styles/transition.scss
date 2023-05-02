@@ -1,0 +1,41 @@
+/*
+ * Copyright 2021 The KubeEdge Authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// See https://staging-cn.vuejs.org/guide/built-ins/transition.html for detail
+
+// fade-transform
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.5s;
+}
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+// sidebar-logo-fade
+.sidebar-logo-fade-enter-active,
+.sidebar-logo-fade-leave-active {
+  transition: opacity 1.5s;
+}
+.sidebar-logo-fade-enter-from,
+.sidebar-logo-fade-leave-to {
+  opacity: 0;
+}

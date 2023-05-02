@@ -1,0 +1,74 @@
+/*
+ * Copyright 2021 The KubeEdge Authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ .slidercontainer {
+    position: absolute;
+    right: 0px;
+    bottom: var(--robo-joystick-height);
+    --length: 150px
+
+    .text {
+      transform: translateY(45px);
+      color: var(--robo-text-color-primary);
+      font-weight:bold;
+      font-size: small;
+    }
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: var(--length);
+    height: 15px;
+    border-radius: 5px;
+    background: #3d3d3d;
+    outline: none;
+    opacity: 0.6;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    --length: 100px;
+    transform: rotate(-90deg);
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1;
+    /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4682B4;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4682B4;
+    cursor: pointer;
+  }
+  
+  .text {
+    transform: translateY(45px);
+    font-size: small;
+  }

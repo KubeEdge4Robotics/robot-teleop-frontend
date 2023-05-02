@@ -1,0 +1,319 @@
+/*
+ * Copyright 2021 The KubeEdge Authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.2rem 0 0.2rem 0;
+}
+
+.bg-secondary-dark {
+    background-color: #343a40 !important;
+    opacity: 0.7;
+}
+
+.navbar>.container-fluid {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    width: 33.3%;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-right: 1rem;
+}
+
+.navbar-brand:any-link {
+    color: inherit;
+}
+
+.navbar-toggler {
+    font-size: 1.25rem;
+    line-height: 1rem;
+    border: 3px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 0.25rem;
+    margin-right: 1rem;
+}
+
+.navbar-toggler-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.25rem;
+    vertical-align: middle;
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-direction: column;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    list-style: none;
+}
+
+.navbar-item {
+    margin: 0.35rem 0.5rem 0.35rem 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    text-decoration: none;
+    text-align: left !important;
+    transition: color 150ms ease-in-out,
+        background-color 150ms ease-in-out border-color 150ms ease-in-out;
+    align-items: center;
+}
+
+.nav-link:any-link {
+    color: inherit;
+}
+
+@media only screen and (min-width: 660px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .margin-left-extend {
+        margin-left: auto;
+    }
+
+    .margin-right-extend {
+        margin-right: auto;
+    }
+
+    .device-settings {
+        --menu-left: auto;
+        --menu-right: 0px;
+    }
+}
+
+.signal-bars {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: 0 1rem;
+    box-sizing: border-box;
+    display: inline-block;
+    --fill-color: white;
+    --border-color: #6d6d6d;
+
+    .bar {
+        width: 4px;
+        margin-left: 1px;
+        display: inline-block;
+        border-color: var(--border-color);
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 1px;
+    }
+
+    .good {
+        border-color: var(--fill-color);
+        background-color: var(--fill-color);
+    }
+
+    .bar.first-bar {
+        height: 20%;
+        margin-left: 0%;
+    }
+
+    .bar.second-bar {
+        height: 40%;
+    }
+
+    .bar.third-bar {
+        height: 60%;
+    }
+
+    .bar.fourth-bar {
+        height: 80%;
+    }
+
+    .bar.fifth-bar {
+        height: 100%;
+    }
+}
+
+.battery-indicator {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5%;
+    height: 1.5rem;
+    width: 3.5rem;
+    margin: 0 1vw;
+    box-sizing: border-box;
+    --fill-color: white;
+    --unfill-color: transparent;
+    --border-color: white;
+    --font-size: 85%;
+    --border-radius: 1px;
+    --border-width: 1px;
+
+    .battery {
+        display: inline-flex;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 20%;
+    }
+
+    .top {
+        background: var(--fill-color);
+        width: 40%;
+        height: 10%;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        margin-bottom: 0px;
+    }
+
+    .outer {
+        width: 100%;
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--border-radius);
+        height: 85%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inner {
+        background: var(--fill-color);
+        flex: 1;
+    }
+
+    .inner.unfill {
+        background: var(--unfill-color);
+    }
+
+    .low {
+        background: red;
+    }
+
+    .good {
+        background: green;
+    }
+
+    .percentage-box {
+        display: inline-flex;
+        box-sizing: border-box;
+        width: 70%;
+        height: auto;
+    }
+
+    .percentage {
+        font-size: var(--font-size);
+        color: aliceblue;
+    }
+}
+
+.robot-usage {
+    width: 33.3%;
+    display: inline-flex;
+    gap: 5%;
+    flex-direction: row;
+    font-size: 85%;
+    margin-left: 1rem;
+
+    .usage {
+        color: aliceblue;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        .usage-title {
+            font-weight: bolder;
+            color: whitesmoke;
+        }
+
+        .high {
+            color: red;
+        }
+
+        .low {
+            color: green;
+        }
+
+        .usage-text {
+            width: 70%;
+            height: auto;
+        }
+    }
+}
+
+.action-button {
+    background-color: #00bf00;
+    color: #fff;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: darkgreen;
+    padding: 0.5rem;
+    font-weight: bold;
+    margin: 0px;
+    --success-background-color: rgb(77, 255, 77);
+    --danger-background-color: rgb(255, 77, 77);
+  }
+  
+  .action-button:active:enabled {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+  }
+  
+  .action-button.Start {
+    background-color: var(--success-background-color);
+  }
+
+  .action-button.Stop {
+    background-color: var(--danger-background-color);
+  }
+  
+  .action-button:disabled {
+    background-color: gray;
+    border-color: rgb(71, 71, 71);
+  }

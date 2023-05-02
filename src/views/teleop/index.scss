@@ -1,0 +1,70 @@
+/*
+ * Copyright 2021 The KubeEdge Authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.teleop-fluid {
+  width: 100%;
+  display: flex;
+  top: 0;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-primary-dark);
+
+}
+
+.toolbar {
+  --transition-speed: 500ms;
+  --default-height: 0px;
+  --hovering-height: 7rem;
+  --hovering-video-height: 6rem;
+
+  position: absolute;
+  bottom: var(--robo-tagsview-height);
+  width: 100vw;
+  height: var(--default-height);
+  transition: height var(--transition-speed) ease-in-out;
+  pointer-events: none;
+}
+
+.fluid {
+  height: 100%;
+  width: 100%;
+}
+
+.gutter {
+  padding: 0.125rem 0.25rem;
+}
+
+.pad {
+  padding: var(--gutter-x) var(--gutter-y);
+}
+
+.col66 {
+  width: 66%;
+}
+.col33 {
+  width: 34%;
+}
+.row50 {
+  height: 50%;
+  width: 100%;
+}
+
+.row100 {
+  height: 100%;
+  width: 100%;
+}
