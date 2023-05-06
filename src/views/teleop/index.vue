@@ -137,8 +137,8 @@ const interval = ref<number>();
 const Velocity = {
   scaledMaxX: 0.5,
   scaledMaxYaw: 0.5,
-  maxX: 0.5,
-  maxYaw: 0.5,
+  maxX: 0.8,
+  maxYaw: 0.8,
 };
 const curr_cmd = {
   x: 0,

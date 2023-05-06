@@ -96,7 +96,6 @@ export default class StreamClient extends SignalingClient {
         } else {
           this._logger.info("Add track to remote stream for id: " + id);
           this._remoteStreams[id].addTrack(event.track);
-          console.log(">>>>>>", this._remoteStreams[id]);
         }
       };
     }

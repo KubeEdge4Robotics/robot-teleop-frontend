@@ -261,13 +261,15 @@ export default abstract class SignalingClient {
   }
 
   _onSignalingConnectionOpen() {
-    // this._logger.debug("SignalingClient._onSignalingConnectionOpen method call");
+    this._logger.debug(
+      "SignalingClient._onSignalingConnectionOpen method call"
+    );
   }
 
   _onSignalingConnectionClose() {
-    // this._logger.debug(
-    //   "SignalingClient._onSignalingConnectionClose method call"
-    // );
+    this._logger.debug(
+      "SignalingClient._onSignalingConnectionClose method call"
+    );
   }
 
   _onSignalingConnectionError(...message: any[]) {
@@ -331,7 +333,7 @@ export default abstract class SignalingClient {
     };
 
     rtcPeerConnection.onconnectionstatechange = () => {
-      this._logger.info(
+      this._logger.debug(
         "RtcPeerConnection connected event id=",
         id,
         rtcPeerConnection.connectionState

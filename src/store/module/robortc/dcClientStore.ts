@@ -60,7 +60,17 @@ export default class DataChannelClinetStore extends SignalingClientStore {
   }
 
   changeRobotStatus(payload: RoboStatus) {
-    this.status = payload;
+    if (!this.status) {
+      this.status = payload;
+    } else {
+      this.status.battery = payload.battery;
+      this.status.cpuUsage = payload.cpuUsage;
+      this.status.memUsage = payload.memUsage;
+      this.status.diskUsage = payload.diskUsage;
+      this.status.wifiNetwork = payload.wifiNetwork;
+      this.status.wifiStrength = payload.wifiStrength;
+      this.status.localIp = payload.localIp;
+    }
     const elem = document.getElementById(
       "robotMicVolumeSlider"
     ) as HTMLInputElement;
@@ -150,7 +160,7 @@ export default class DataChannelClinetStore extends SignalingClientStore {
       this.stopTeleop();
     };
     this.signalingClient.onDataChannelMessage = (id: string, data: string) => {
-      this._logger.info("DataChannel message", data);
+      this._logger.debug("DataChannel message", data);
       const parsedMsg = JSON.parse(data);
       if (parsedMsg.type === "robotStatus" && parsedMsg.status) {
         this.changeRobotStatus(parsedMsg.status);

@@ -110,7 +110,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, PropType, onMounted, onUnmounted } from "vue";
+import { ref, PropType, onUpdated, onUnmounted } from "vue";
 import DataChannelClinetStore from "@/store/module/robortc/dcClientStore";
 import { RoboStatus } from "@/apis/types/robortc";
 
@@ -124,7 +124,7 @@ const props = defineProps({
     default: null,
   },
 });
-const teleopDataChannel = ref<DataChannelClinetStore>();
+const teleopDataChannel = ref<DataChannelClinetStore>(props.datachannel);
 const showNav = ref<boolean>(true);
 const signalBars = ref<number>(2);
 const chargeBars = ref<number>(1);
@@ -153,6 +153,9 @@ const onClick = () => {
 const listenToDataChannel = () => {
   if (teleopDataChannel.value) {
     const status = teleopDataChannel.value.status as RoboStatus;
+    if (!status) {
+      return;
+    }
     signalBars.value = status.wifiStrength || 0;
     batteryLevel.value = status.battery || 0;
     chargeBars.value = Math.ceil(batteryLevel.value / 10);
@@ -162,7 +165,7 @@ const listenToDataChannel = () => {
   }
 };
 
-onMounted(() => {
+onUpdated(() => {
   teleopDataChannel.value = props.datachannel;
   loopIntervalId.value = window.setInterval(() => {
     listenToDataChannel();
