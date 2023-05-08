@@ -37,7 +37,6 @@ export default class DataChannelClinetStore extends SignalingClientStore {
     const client = this.room.control._clients?.find(
       (c: RTCClient) => c.id === id
     );
-
     if (client) {
       client.dataChannel = this.dataChannel;
       client.isInCall = true;

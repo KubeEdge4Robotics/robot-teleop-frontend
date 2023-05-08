@@ -15,6 +15,12 @@
  * limitations under the License.
 -->
 
+<template>
+  <svg class="svg-icon" aria-hidden="true">
+    <use :href="symbolId" />
+  </svg>
+</template>
+
 <script lang="ts" setup>
 import { computed } from "vue";
 
@@ -31,12 +37,6 @@ const props = defineProps({
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 </script>
-
-<template>
-  <svg class="svg-icon" aria-hidden="true">
-    <use :href="symbolId" />
-  </svg>
-</template>
 
 <style lang="scss" scoped>
 @import "./index.scss";

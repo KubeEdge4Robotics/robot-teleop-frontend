@@ -135,8 +135,8 @@ const robotSessionVolume = ref(0.5);
 const interval = ref<number>();
 
 const Velocity = {
-  scaledMaxX: 0.5,
-  scaledMaxYaw: 0.5,
+  scaledMaxX: 0.8,
+  scaledMaxYaw: 0.8,
   maxX: 0.8,
   maxYaw: 0.8,
 };
@@ -195,44 +195,48 @@ const initialPage = async () => {
       videoCameras.value = robot.value.camera;
       rtcStore.initialize(robot.value);
       await rtcStore.start().then(() => {
-        if (!interval.value) emitLoop();
+        emitLoop();
       });
     });
 };
 
+const updateRtc = async () => {
+  if (!videoCameras.value) {
+    return;
+  }
+  for (const camera of videoCameras.value) {
+    const clientStream = rtcStore.modules.get(
+      camera.camera_name.toLocaleLowerCase()
+    );
+    if (clientStream && clientStream instanceof StreamClientStore) {
+      // @ts-ignore
+      if (clientStream.stream && clientStream.stream !== camera.stream)
+        camera.stream = clientStream.stream;
+    }
+  }
+  // map stream
+  const mapStreamClient = rtcStore.modules.get("map");
+  if (mapStreamClient && mapStreamClient instanceof StreamClientStore) {
+    // @ts-ignore
+    mapStream.value = mapStreamClient.stream;
+  }
+  // teleop datachannel
+  const tmp = rtcStore.modules.get("teleop");
+  if (tmp && tmp instanceof DataChannelClinetStore) {
+    teleopDataChannel.value = tmp;
+    const readyState = teleopDataChannel.value.dataChannel?.readyState;
+    if (readyState === "open") {
+      readySend.value = true;
+    } else {
+      readySend.value = false;
+      showControls.value = false;
+    }
+  }
+};
+
 const emitLoop = () => {
   interval.value = window.setInterval(function () {
-    if (!videoCameras.value) {
-      return;
-    }
-    for (const camera of videoCameras.value) {
-      const clientStream = rtcStore.modules.get(
-        camera.camera_name.toLocaleLowerCase()
-      );
-      if (clientStream && clientStream instanceof StreamClientStore) {
-        // @ts-ignore
-        if (clientStream.stream && clientStream.stream !== camera.stream)
-          camera.stream = clientStream.stream;
-      }
-    }
-    // map stream
-    const mapStreamClient = rtcStore.modules.get("map");
-    if (mapStreamClient && mapStreamClient instanceof StreamClientStore) {
-      // @ts-ignore
-      mapStream.value = mapStreamClient.stream;
-    }
-    // teleop datachannel
-    const tmp = rtcStore.modules.get("teleop");
-    if (tmp && tmp instanceof DataChannelClinetStore) {
-      teleopDataChannel.value = tmp;
-      const readyState = teleopDataChannel.value.dataChannel?.readyState;
-      if (readyState === "open") {
-        readySend.value = true;
-      } else {
-        readySend.value = false;
-        showControls.value = false;
-      }
-    }
+    updateRtc();
   }, 1000);
 };
 
@@ -243,14 +247,8 @@ const updateCmdVel = (newCmd: { x: number; yaw: number }) => {
   const status = teleopDataChannel.value.status;
   if (readySend.value && status?.isTeleopOn) {
     const msg = {
-      x:
-        (curr_cmd.x ? curr_cmd.x : 0) *
-        Math.sign(curr_cmd.x) *
-        ((Math.abs(curr_cmd.x) * 2) / 3 + Velocity.maxX / 3),
-      yaw:
-        (curr_cmd.yaw ? curr_cmd.yaw : 0) *
-        Math.sign(curr_cmd.yaw) *
-        ((Math.abs(curr_cmd.yaw) * 9) / 10 + Velocity.maxYaw / 10),
+      x: (curr_cmd.x ? curr_cmd.x : 0) * Velocity.scaledMaxX,
+      yaw: (curr_cmd.yaw ? curr_cmd.yaw : 0) * Velocity.scaledMaxX,
       type: "velCmd",
     };
     teleopDataChannel.value.send(msg);

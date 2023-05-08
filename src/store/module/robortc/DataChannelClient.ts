@@ -59,7 +59,6 @@ export default class DataChannelClient extends SignalingClient {
     const rtcPeerConnection = new window.RTCPeerConnection(
       this._rtcConfiguration
     );
-
     if (isCaller) {
       const dataChannel = rtcPeerConnection.createDataChannel(
         this._signalingServerConfiguration.room,
@@ -76,14 +75,13 @@ export default class DataChannelClient extends SignalingClient {
     rtcPeerConnection: RTCPeerConnection
   ) {
     super._connectRtcPeerConnectionEvents(id, rtcPeerConnection);
-
-    if (!(id in this._dataChannels)) {
-      rtcPeerConnection.ondatachannel = ({ channel: dataChannel }) => {
-        this._dataChannels[id] = dataChannel;
-        this._onAddDataChannel(id, this._dataChannels[id]);
-        this._connectDataChannelEvents(id, dataChannel);
-      };
-    }
+    // if (!(id in this._dataChannels)) {
+    rtcPeerConnection.ondatachannel = ({ channel: dataChannel }) => {
+      this._dataChannels[id] = dataChannel;
+      this._onAddDataChannel(id, this._dataChannels[id]);
+      this._connectDataChannelEvents(id, dataChannel);
+    };
+    // }
   }
 
   _disconnectRtcPeerConnectionEvents(rtcPeerConnection: RTCPeerConnection) {

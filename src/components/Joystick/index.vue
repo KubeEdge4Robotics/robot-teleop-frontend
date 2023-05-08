@@ -203,14 +203,11 @@ export default {
       const radius = this.getCanvasRadius();
 
       //Draw the background area
-      this.context.fillStyle = "#87CEEB";
-      this.context.roundRect(
-        centerX - radius,
-        centerY - radius,
-        radius * 2,
-        radius * 2,
-        radius / 4
-      );
+      this.context.fillStyle = "#fff";
+      this.context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      this.context.fill();
+      this.context.fillStyle = "rgba(0, 0, 0, 0.9)";
+      this.context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
       this.context.fill();
 
       const pointOffset = radius / 8;
@@ -231,7 +228,7 @@ export default {
       //draw the up triangle
       const upTriangleStartY = centerY - (3 * radius) / 4;
 
-      this.context.fillStyle = "#4682B4";
+      this.context.fillStyle = "#ffffff";
       this.context.beginPath();
       this.context.moveTo(centerX, upTriangleStartY);
       this.context.lineTo(

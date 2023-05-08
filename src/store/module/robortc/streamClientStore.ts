@@ -105,7 +105,6 @@ export default class StreamClientStore extends SignalingClientStore {
   }
 
   toggleCamera() {
-    console.error("toggleCamera");
     if (this.stream) {
       const videoTracks = this.stream.getVideoTracks();
       for (const videoTrack of videoTracks) {

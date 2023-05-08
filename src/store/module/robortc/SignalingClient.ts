@@ -373,7 +373,9 @@ export default abstract class SignalingClient {
   }
 
   async _getCallAcceptance(id: string) {
-    if (this._alreadyAcceptedCalls.includes(id)) {
+    if (this._rtcPeerConnections.has(id)) {
+      return false;
+    } else if (this._alreadyAcceptedCalls.includes(id)) {
       return true;
     }
 
@@ -393,12 +395,16 @@ export default abstract class SignalingClient {
 
     if (data.answer) {
       const rtcPeerConnection = this._rtcPeerConnections.get(data.fromId);
+      if (rtcPeerConnection?.signalingState === "stable") {
+        return;
+      }
       try {
         await rtcPeerConnection?.setRemoteDescription(
           new window.RTCSessionDescription(data.answer)
         );
       } catch (e) {
         this._logger.error(
+          data,
           "SignalingServer peer-call-answer-received event, error=",
           e
         );
@@ -438,7 +444,6 @@ export default abstract class SignalingClient {
       await rtcPeerConnection.setRemoteDescription(
         new window.RTCSessionDescription(data.offer)
       );
-
       const answer = await rtcPeerConnection.createAnswer();
       await rtcPeerConnection.setLocalDescription(
         new window.RTCSessionDescription(answer)
@@ -461,8 +466,7 @@ export default abstract class SignalingClient {
       if (id === this._socket_id || this._hasRtcPeerConnection(id)) {
         continue;
       }
-      const shouldAccept = await this._getCallAcceptance(id);
-      if (shouldAccept) {
+      if (await this._getCallAcceptance(id)) {
         const rtcPeerConnection: RTCPeerConnection =
           this._createRtcPeerConnection(id, true);
         this._rtcPeerConnections.set(id, rtcPeerConnection);
